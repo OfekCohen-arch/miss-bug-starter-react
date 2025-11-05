@@ -1,7 +1,6 @@
 import fs from 'fs'
-import fr from 'follow-redirects'
 
-const { http, https } = fr
+
 
 export const utilService = {
     makeId,

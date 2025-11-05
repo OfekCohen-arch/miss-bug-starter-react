@@ -2,14 +2,15 @@ import express from 'express'
 import { bugService } from './services/bug.service.remote.js'
 
 const app = express()
-//app.use(express.static('public'))
-bugService.query()
-.then(bugs=>console.log(bugs))
 
 
 app.get('/', (req, res) => res.send('Hello there'))
 app.get('/api/bug', (req, res) => {
-    bugService.query()
+    const filterBy = {
+        txt:req.query.txt,
+        minSeverity:+req.query.minSeverity
+    }
+    bugService.query(filterBy)
     .then(bugs=>res.send(bugs))
 })
 app.get('/api/bug/save', (req, res) => {
