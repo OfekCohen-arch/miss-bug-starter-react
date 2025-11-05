@@ -1,11 +1,32 @@
+import fs from 'fs'
+import fr from 'follow-redirects'
+
+const { http, https } = fr
+
 export const utilService = {
     makeId,
     makeLorem,
     getRandomIntInclusive,
     loadFromStorage,
-    saveToStorage
+    saveToStorage,
+    readJsonFile,
+    writeJsonFile
 }
+ function readJsonFile(path) {
+    const str = fs.readFileSync(path, 'utf8')
+    const json = JSON.parse(str)
+    return json
+}
+ function writeJsonFile(path, data) {
+    return new Promise((resolve, reject) => {
+        const jsonData = JSON.stringify(data, null, 2)
 
+        fs.writeFile(path, jsonData, (err) => {
+            if (err) return reject(err)
+            resolve()
+        })
+    })
+}
 function makeId(length = 6) {
     var txt = ''
     var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'

@@ -1,5 +1,5 @@
 import express from 'express'
-import { bugService } from './services/bug.service.local.js'
+import { bugService } from './services/bug.service.remote.js'
 
 const app = express()
 //app.use(express.static('public'))
