@@ -1,6 +1,6 @@
 
 
-const BASE_URL = "/api/bug";
+const BASE_URL = "/api/bug/";
 
 
 export const bugService = {
@@ -34,7 +34,6 @@ function save(bug){
         `title=${bug.title}&` +
         `severity=${bug.severity}&` +
         `description=${bug.description}` 
-
     return axios.get(BASE_URL + queryParams)
         .then(res => res.data)
 }
