@@ -21,6 +21,6 @@
     "_id": "B104",
     "title": "Hallo",
     "description": "2222",
-    "severity": "3"
+    "severity": 5
   }
 ]

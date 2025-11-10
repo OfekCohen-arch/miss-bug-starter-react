@@ -1,13 +1,16 @@
 import express from "express";
 import cookieParser from "cookie-parser";
+import path from "path";
 import { bugService } from "./services/bug.service.js";
+import { loggerService } from "./services/logger.service.js";
+
 
 const app = express();
 app.use(express.static("public"));
 app.use(cookieParser());
+app.use(express.json());
 app.set("query parser", "extended");
 
-app.get("/", (req, res) => res.send("Hello there"));
 app.get("/api/bug", (req, res) => {
   const filterBy = {
     txt: req.query.txt,
@@ -15,30 +18,51 @@ app.get("/api/bug", (req, res) => {
   };
   bugService.query(filterBy).then((bugs) => res.send(bugs));
 });
-app.get("/api/bug/save", (req, res) => {
-  const { _id, title, description, severity, createdAt } = req.query;
-  const bug = { _id, title, description, severity, createdAt };
-  console.log(bug);
-
-  bugService.save(bug).then((bug) => res.send(bug));
-});
 app.get("/api/bug/:bugId", (req, res) => {
   const bugId = req.params.bugId;
   const visitedBugsIds = req.cookies.visitedBugsIds || [];
   const idx = visitedBugsIds.findIndex((currId) => currId === bugId);
-  bugService.getById(bugId).then((bug) => {
-    if (idx === -1 && visitedBugsIds.length < 3) {
-      visitedBugsIds.push(bugId);
-      res.cookie("visitedBugsIds", visitedBugsIds, { maxAge: 7_000 });
-      res.send(bug);
-    }
-    else if (idx > -1) res.send(bug);
-    else  res.status(401).send("Wait for a bit");
-  });
+  bugService
+    .getById(bugId)
+    .then((bug) => {
+      if (idx === -1 && visitedBugsIds.length < 3) {
+        visitedBugsIds.push(bugId);
+        res.cookie("visitedBugsIds", visitedBugsIds, { maxAge: 7_000 });
+        res.send(bug);
+      } else if (idx > -1) res.send(bug);
+      else res.status(401).send("Wait for a bit");
+    })
+    .catch((err) => {
+      loggerService.error(err);
+      res.status(404).send(err);
+    });
 });
-app.get("/api/bug/:bugId/remove", (req, res) => {
+
+app.put("/api/bug/:id", (req, res) => {
+  const { _id, title, description, severity, createdAt } = req.body;
+  const bug = { _id, title, description, severity, createdAt };
+  bugService.save(bug).then((bug) => res.send(bug));
+});
+app.post("/api/bug", (req, res) => {
+  const {title, description, severity, createdAt } = req.body;
+  const bug = {title, description, severity, createdAt };
+  bugService.save(bug).then((bug) => res.send(bug));
+});
+
+
+app.delete("/api/bug/:bugId", (req, res) => {
   const bugId = req.params.bugId;
-  bugService.remove(bugId).then(res.send("OK"));
+  bugService.remove(bugId)
+  .then(res.send("OK"))
+  .catch(err => {
+			loggerService.error(err)
+			res.status(404).send(err)
+		})
 });
+
+app.get('/*all', (req, res) => {
+	res.sendFile(path.resolve('public/index.html'))
+})
+
 const port = 3030;
 app.listen(port);
