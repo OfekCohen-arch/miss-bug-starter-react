@@ -29,7 +29,7 @@ app.get("/api/bug/:bugId", (req, res) => {
   bugService.getById(bugId).then((bug) => {
     if (idx === -1 && visitedBugsIds.length < 3) {
       visitedBugsIds.push(bugId);
-      res.cookie("visitedBugsIds", visitedBugsIds, { maxAge: 10_000 });
+      res.cookie("visitedBugsIds", visitedBugsIds, { maxAge: 7_000 });
       res.send(bug);
     }
     else if (idx > -1) res.send(bug);
