@@ -6,7 +6,7 @@ export const bugService = {
 	remove,
 	save,
 }
-
+const PAGE_SIZE = 3
 const bugs = readJsonFile('./data/bug.json')
 
 function query(filterBy = {}) {
@@ -20,7 +20,11 @@ function query(filterBy = {}) {
     if (filterBy.minSeverity) {
         filteredBugs = filteredBugs.filter(bug => bug.severity >= filterBy.minSeverity)
     }
-
+    if(filterBy.paginationOn){
+		const startIdx = PAGE_SIZE * filterBy.pageIdx
+		const endIdx = startIdx + PAGE_SIZE
+		filteredBugs = filteredBugs.slice(startIdx,endIdx)
+	}
 	return Promise.resolve(filteredBugs)
 }
 

@@ -41,5 +41,5 @@ function getEmptyBug(
   return { title, description, severity, createdAt };
 }
 function getDefaultFilter() {
-  return { txt: "", minSeverity: 0 };
+  return { txt: "", minSeverity: 0, pageIdx: 0, paginationOn: true  };
 }

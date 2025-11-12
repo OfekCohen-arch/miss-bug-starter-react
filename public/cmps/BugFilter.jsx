@@ -1,9 +1,8 @@
 const { useState, useEffect } = React
 
-export function BugFilter({ filterBy, onSetFilterBy }) {
+export function BugFilter({ filterBy, onSetFilterBy,allBugs }) {
 
     const [filterByToEdit, setFilterByToEdit] = useState(filterBy)
-
     useEffect(() => {
         onSetFilterBy(filterByToEdit)
     }, [filterByToEdit])
@@ -34,10 +33,30 @@ export function BugFilter({ filterBy, onSetFilterBy }) {
         onSetFilterBy(filterByToEdit)
     }
 
+    function onGetPage(dir) {
+        setFilterByToEdit(prev => {
+            if (prev.pageIdx + dir < 0) return prev
+            if(prev.pageIdx + dir >= allBugs.length - 1) return prev
+            return { ...prev, pageIdx: prev.pageIdx += dir }
+        })
+    }
+
+    function togglePagination() {
+        setFilterByToEdit(prev => {
+            const paginationOn = !prev.paginationOn
+            return { ...prev, paginationOn }
+        })
+    }
     const { txt, minSeverity } = filterByToEdit
     return (
         <section className="bug-filter">
             <h2>Filter</h2>
+            <section className="pagination">
+                <button disabled={!filterBy.paginationOn} onClick={() => onGetPage(-1)}>-</button>
+                <span>{filterBy.pageIdx+1}</span>
+                <button disabled={!filterBy.paginationOn} onClick={() => onGetPage(1)}>+</button>
+                <button onClick={togglePagination}>Toggle Pagination</button>
+            </section>
             <form onSubmit={onSubmitFilter}>
                 <label htmlFor="txt">Text: </label>
                 <input value={txt} onChange={handleChange} type="text" placeholder="By Text" id="txt" name="txt" />

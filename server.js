@@ -15,22 +15,20 @@ app.get("/api/bug", (req, res) => {
   const filterBy = {
     txt: req.query.txt,
     minSeverity: +req.query.minSeverity,
+    paginationOn: req.query.paginationOn === 'true',
+    pageIdx: req.query.pageIdx
   };
   bugService.query(filterBy).then((bugs) => res.send(bugs));
 });
 app.get("/api/bug/:bugId", (req, res) => {
   const bugId = req.params.bugId;
   const visitedBugsIds = req.cookies.visitedBugsIds || [];
-  const idx = visitedBugsIds.findIndex((currId) => currId === bugId);
-  bugService
-    .getById(bugId)
+  if(visitedBugsIds.includes(bugId)) visitedBugsIds.push(bugId)
+  if(visitedBugsIds.length>3) return res.status(401).send("Wait for a bit");
+  res.cookie('visitedBugsIds',visitedBugsIds,{maxAge: 7000})
+  bugService.getById(bugId)
     .then((bug) => {
-      if (idx === -1 && visitedBugsIds.length < 3) {
-        visitedBugsIds.push(bugId);
-        res.cookie("visitedBugsIds", visitedBugsIds, { maxAge: 7_000 });
-        res.send(bug);
-      } else if (idx > -1) res.send(bug);
-      else res.status(401).send("Wait for a bit");
+      res.send(bug)
     })
     .catch((err) => {
       loggerService.error(err);
