@@ -3,24 +3,28 @@
     "title": "Infinite Loop Detected",
     "severity": "3",
     "_id": "B101",
-    "description": "undefined"
+    "description": "AAAAAAAA",
+    "createdAt" : 1425678901234  
   },
   {
     "title": "Keyboard Not Found",
     "severity": "4",
     "_id": "B102",
-    "description": "undefined"
+    "description": "BBBBBBB",
+    "createdAt": 1567890456789  
   },
   {
     "_id": "B103",
     "title": "Bug 1762448081515",
     "description": "ff",
-    "severity": "5"
+    "severity": "5",
+    "createdAt": 1672345678123  
   },
   {
     "_id": "B104",
     "title": "Hallo",
     "description": "2222",
-    "severity": 5
+    "severity": 5,
+    "createdAt": 1734567890123  
   }
 ]

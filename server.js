@@ -12,14 +12,26 @@ app.use(express.json());
 app.set("query parser", "extended");
 
 app.get("/api/bug", (req, res) => {
-  const filterBy = {
-    txt: req.query.txt,
-    minSeverity: +req.query.minSeverity,
-    paginationOn: req.query.paginationOn === 'true',
-    pageIdx: req.query.pageIdx
-  };
-  bugService.query(filterBy).then((bugs) => res.send(bugs));
+  const queryOptions = parseQueryParams(req.query)
+  bugService.query(queryOptions).then((bugs) => res.send(bugs));
 });
+function parseQueryParams(queryParams) {
+    const filterBy = {
+        txt: queryParams.txt || '',
+        minSeverity: +queryParams.minSeverity || 0,
+        labels: queryParams.labels || [],
+        paginationOn: queryParams.paginationOn === 'true',
+        pageIdx : +queryParams.pageIdx || 0
+    }
+
+    const sortBy = {
+        sortField: queryParams.sortField || '',
+        sortDir: +queryParams.sortDir || 1,
+    }
+    
+
+    return { filterBy, sortBy}
+}
 app.get("/api/bug/:bugId", (req, res) => {
   const bugId = req.params.bugId;
   const visitedBugsIds = req.cookies.visitedBugsIds || [];

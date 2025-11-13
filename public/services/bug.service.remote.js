@@ -9,9 +9,10 @@ export const bugService = {
   getDefaultFilter,
 };
 
-function query(filterBy = {}) {
+function query(queryOptions) {
   // const queryParams = `?txt=${filterBy.txt}&minSeverity=${filterBy.minSeverity}`
-  return axios.get(BASE_URL , { params: filterBy }).then((res) => res.data);
+  return axios.get(BASE_URL , { params: queryOptions })
+  .then((res) => res.data);
 }
 
 function getById(bugId) {
@@ -41,5 +42,5 @@ function getEmptyBug(
   return { title, description, severity, createdAt };
 }
 function getDefaultFilter() {
-  return { txt: "", minSeverity: 0, pageIdx: 0, paginationOn: true  };
+  return { txt: "", minSeverity: 0, pageIdx: 0, paginationOn: true , labels: [], sortField: '', sortDir: 1 };
 }
