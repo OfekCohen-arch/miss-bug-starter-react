@@ -4,27 +4,31 @@
     "severity": "3",
     "_id": "B101",
     "description": "AAAAAAAA",
-    "createdAt" : 1425678901234  
+    "createdAt": 1425678901234,
+    "labels": ["back","front"]
   },
   {
     "title": "Keyboard Not Found",
     "severity": "4",
     "_id": "B102",
     "description": "BBBBBBB",
-    "createdAt": 1567890456789  
+    "createdAt": 1567890456789,
+    "labels": ["in progress","stuck"]
   },
   {
     "_id": "B103",
     "title": "Bug 1762448081515",
     "description": "ff",
     "severity": "5",
-    "createdAt": 1672345678123  
+    "createdAt": 1672345678123,
+    "labels": ["stuck","back"]
   },
   {
     "_id": "B104",
     "title": "Hallo",
     "description": "2222",
     "severity": 5,
-    "createdAt": 1734567890123  
+    "createdAt": 1734567890123,
+    "labels": ["in progress","back"]
   }
 ]

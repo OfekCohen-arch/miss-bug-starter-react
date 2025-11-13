@@ -1,8 +1,12 @@
+import { bugService } from "../services/bug.service.remote.js"
+import { LabelChooser } from "./LabelChooser.jsx"
+
 const { useState, useEffect } = React
 
 export function BugFilter({ filterBy, onSetFilterBy,allBugs }) {
 
     const [filterByToEdit, setFilterByToEdit] = useState(filterBy)
+    const labels = bugService.getLabels()
     useEffect(() => {
         onSetFilterBy(filterByToEdit)
     }, [filterByToEdit])
@@ -51,7 +55,7 @@ export function BugFilter({ filterBy, onSetFilterBy,allBugs }) {
     function resetSort() {
         setFilterByToEdit(prev => ({ ...prev, sortField: '', sortDir: 1 }))
     }
-    
+
     const { txt, minSeverity } = filterByToEdit
     return (
         <section className="bug-filter">
@@ -127,6 +131,10 @@ export function BugFilter({ filterBy, onSetFilterBy,allBugs }) {
                 </div>
 
                 <button onClick={resetSort}>Clear Sort</button>
+                <LabelChooser 
+                labels={labels} 
+                filterBy={filterByToEdit} 
+                onSetFilterBy={setFilterByToEdit}/>
             </div>
         </section>
     )

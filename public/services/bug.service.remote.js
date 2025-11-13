@@ -7,6 +7,7 @@ export const bugService = {
   save,
   getEmptyBug,
   getDefaultFilter,
+  getLabels
 };
 
 function query(queryOptions) {
@@ -43,4 +44,9 @@ function getEmptyBug(
 }
 function getDefaultFilter() {
   return { txt: "", minSeverity: 0, pageIdx: 0, paginationOn: true , labels: [], sortField: '', sortDir: 1 };
+}
+function getLabels() {
+    return [
+        'back', 'front', 'critical', 'fixed', 'in progress', 'stuck'
+    ]
 }

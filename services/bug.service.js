@@ -26,6 +26,11 @@ function query({ filterBy, sortBy }) {
       (bug) => bug.severity >= filterBy.minSeverity
     );
   }
+  if (filterBy.labels && filterBy.labels.length > 0) {
+        filteredBugs = 
+            filteredBugs.filter(bug => 
+                filterBy.labels.some(label => bug?.labels?.includes(label)))
+    }
   if (sortBy.sortField === "severity" || sortBy.sortField === "createdAt") {
     const { sortField } = sortBy;
 
