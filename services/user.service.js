@@ -33,13 +33,11 @@ function getById(userId) {
 
   return Promise.resolve(user);
 }
-function getByUsername(userName) {
-  var user = users.find((currUser) => currUser.userName === userName);
-
-  if (!user) return Promise.reject("User not found!");
+function getByUsername(username) {
+  var user = users.find((currUser) => currUser.username === username);
+  if (!user) return Promise.resolve(null);
 
   user = { ...user };
-  delete user.password;
 
   return Promise.resolve(user);
 }
@@ -48,7 +46,7 @@ function remove(userId) {
   return _saveUsersToFile()
 }
 function add(user){
-    return getByUsername(user.userName)
+    return getByUsername(user.username)
     .then(existingUser => {
             if (existingUser) return Promise.reject('Username taken')
 

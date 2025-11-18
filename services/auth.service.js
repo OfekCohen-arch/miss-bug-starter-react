@@ -2,7 +2,7 @@ import Cryptr from 'cryptr'
 import { userService } from './user.service.js'
 const cryptr = new Cryptr(process.env.SECRET1 || 'secret-puk-1234')
 
-import { userService } from "./user.service.js"
+
 
 
 export const authService = {

@@ -91,10 +91,12 @@ app.post('/api/auth/login', (req, res) => {
         })
 })
 app.post("/api/auth/signup", (req, res) => {
-  const { userName, fullName, password } = req.body;
+  const { username, fullname, password } = req.body;
   userService
-    .add({ userName, fullName, password })
+    .add({ username, fullname, password })
     .then((user) => {
+      console.log(user);
+      
       const loginToken = authService.getLoginToken(user);
       res.cookie("loginToken", loginToken);
       res.send(user);
