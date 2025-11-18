@@ -12,9 +12,11 @@ import { BugDetails } from './pages/BugDetails.jsx'
 import { AboutUs } from './pages/AboutUs.jsx'
 import { LoginSignup } from './pages/LoginSignup.jsx'
 import { UserDetails } from './pages/UserDetails.jsx'
+import { UserIndex } from './pages/UserIndex.jsx'
 
 export function App() {
     const [loggedinUser,setLoggedinUser] = useState(authService.getLoggedinUser())
+    
     return <Router>
         <div className="app-wrapper">
             <UserMsg />
@@ -26,7 +28,9 @@ export function App() {
                     <Route path="/bug/:bugId" element={<BugDetails />} />
                     <Route path="/about" element={<AboutUs />} />
                     <Route path="/auth" element={<LoginSignup setLoggedinUser={setLoggedinUser} />} />
+                    <Route path="/user" element={<UserIndex/>}/>
                     <Route path="/user/:userId" element={<UserDetails loggedinUser={loggedinUser}/>}/>
+                    
                 </Routes>
             </main>
             <AppFooter />

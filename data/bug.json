@@ -1,7 +1,7 @@
 [
   {
     "title": "Infinite Loop Detected",
-    "severity": "3",
+    "severity": 4,
     "_id": "B101",
     "description": "AAAAAAAA",
     "createdAt": 1425678901234,
@@ -42,17 +42,6 @@
     "creator": {
       "_id": "GOtHH",
       "fullname": "Bobby Bob"
-    }
-  },
-  {
-    "title": "eins",
-    "description": "ein",
-    "severity": 1,
-    "createdAt": 1763452770417,
-    "_id": "RbYdX",
-    "creator": {
-      "_id": "tl3ps",
-      "fullname": "Popo McPopo"
     }
   }
 ]

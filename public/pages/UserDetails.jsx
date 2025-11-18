@@ -29,7 +29,7 @@ export function UserDetails(){
     }
 
     function onBack() {
-        navigate('/')
+        navigate(-1)
     }
 
     if (!user || !bugs) return <div>Loading...</div>

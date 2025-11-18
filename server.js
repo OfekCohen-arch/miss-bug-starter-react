@@ -56,7 +56,10 @@ app.put("/api/bug/:id", (req, res) => {
   const loggedInUser = authService.validateToken(req.cookies.loginToken)
   bugService.save(bug,loggedInUser)
   .then((bug) => res.send(bug))
-  .catch(res.status(404).send('Not your bug'))
+  .catch((err)=>{
+    loggerService.error('Cannot save bug', err)
+    res.status(404).send('Not your bug')}
+    )
 });
 app.post("/api/bug", (req, res) => {
   const { title, description, severity, createdAt } = req.body;
@@ -73,7 +76,10 @@ app.delete("/api/bug/:bugId", (req, res) => {
   const loggedInUser = authService.validateToken(req.cookies.loginToken)
   bugService.remove(bugId,loggedInUser)
     .then(res.send("OK"))
-    .catch(res.status(404).send('Not your bug'));
+    .catch((err)=>{
+    loggerService.error('Cannot delete car', err)
+    res.status(404).send('Not your bug')}
+    )
 });
 
 app.get('/api/user', (req, res) => {
@@ -87,7 +93,6 @@ app.get('/api/user', (req, res) => {
 
 app.get('/api/user/:userId', (req, res) => {
     const { userId } = req.params
-
     userService.getById(userId)
         .then(user => res.send(user))
         .catch(err => {
@@ -95,7 +100,15 @@ app.get('/api/user/:userId', (req, res) => {
             res.status(400).send('Cannot load user')
         })
 })
-
+app.delete('/api/user:userId', (req,res) =>{
+  const userId = req.params.userId;
+  userService.remove(userId)
+    .then(res.send("OK"))
+    .catch((err)=>{
+    loggerService.error('Cannot delete user', err)
+    res.status(404).send('Not your user')}
+    )
+})
 app.post('/api/auth/login', (req, res) => {
     const { username, password } = req.body
     authService.checkLogin({ username, password })
