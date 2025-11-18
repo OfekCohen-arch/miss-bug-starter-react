@@ -7,6 +7,7 @@ export function AppHeader({ loggedinUser, setLoggedinUser }) {
     function onLogout() {
         authService.logout()
             .then(() => {
+                navigate('/')
                 setLoggedinUser(null)
             })
             .catch(err => {

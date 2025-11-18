@@ -31,6 +31,11 @@ function query({ filterBy, sortBy }) {
       filterBy.labels.some((label) => bug?.labels?.includes(label))
     );
   }
+  if(filterBy.userId){
+    filteredBugs = filteredBugs.filter((bug) =>
+    (filterBy.userId === bug.creator._id)
+    )
+  }
   if (sortBy.sortField === "severity" || sortBy.sortField === "createdAt") {
     const { sortField } = sortBy;
 
@@ -79,7 +84,7 @@ function save(bug, loggedInUser) {
   } else {
     bug._id = makeId();
     bug.createdAt = Date.now();
-    const creator = { _id: loggedInUser._id, fullName: loggedInUser.fullName };
+    const creator = { _id: loggedInUser._id, fullname: loggedInUser.fullname };
     bug.creator = creator;
     bugs.push(bug);
   }

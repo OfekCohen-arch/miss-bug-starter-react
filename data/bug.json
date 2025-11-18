@@ -5,10 +5,13 @@
     "_id": "B101",
     "description": "AAAAAAAA",
     "createdAt": 1425678901234,
-    "labels": ["back","front"],
-    "creator":{
-      "_id":"u102",
-      "fullname":"Nina Simantov"
+    "labels": [
+      "back",
+      "front"
+    ],
+    "creator": {
+      "_id": "u102",
+      "fullname": "Nina Simantov"
     }
   },
   {
@@ -17,10 +20,13 @@
     "_id": "B102",
     "description": "BBBBBBB",
     "createdAt": 1567890456789,
-    "labels": ["in progress","stuck"],
-    "creator":{
-      "_id":"tl3ps",
-      "fullname":"Popo McPopo"
+    "labels": [
+      "in progress",
+      "stuck"
+    ],
+    "creator": {
+      "_id": "tl3ps",
+      "fullname": "Popo McPopo"
     }
   },
   {
@@ -29,10 +35,13 @@
     "description": "ff",
     "severity": "5",
     "createdAt": 1672345678123,
-    "labels": ["stuck","back"],
-    "creator":{
-      "_id":"6iykr",
-      "fullname":"Kiki Ki"
+    "labels": [
+      "stuck",
+      "back"
+    ],
+    "creator": {
+      "_id": "6iykr",
+      "fullname": "Kiki Ki"
     }
   },
   {
@@ -41,10 +50,35 @@
     "description": "2222",
     "severity": 5,
     "createdAt": 1734567890123,
-    "labels": ["in progress","back"],
-    "creator":{
-      "_id":"GOtHH",
-      "fullname":"Bobby Bob"
+    "labels": [
+      "in progress",
+      "back"
+    ],
+    "creator": {
+      "_id": "GOtHH",
+      "fullname": "Bobby Bob"
+    }
+  },
+  {
+    "title": "eins",
+    "description": "ein",
+    "severity": 1,
+    "createdAt": 1763452770417,
+    "_id": "RbYdX",
+    "creator": {
+      "_id": "tl3ps",
+      "fullname": "Popo McPopo"
+    }
+  },
+  {
+    "title": "zwei",
+    "description": "222",
+    "severity": 2,
+    "createdAt": 1763452880727,
+    "_id": "Rx9lr",
+    "creator": {
+      "_id": "tl3ps",
+      "fullname": "Popo McPopo"
     }
   }
 ]

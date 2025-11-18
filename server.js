@@ -23,6 +23,7 @@ function parseQueryParams(queryParams) {
     labels: queryParams.labels || [],
     paginationOn: queryParams.paginationOn === "true",
     pageIdx: +queryParams.pageIdx || 0,
+    userId: queryParams.userId || ''
   };
 
   const sortBy = {
@@ -76,6 +77,25 @@ app.delete("/api/bug/:bugId", (req, res) => {
     });
 });
 
+app.get('/api/user', (req, res) => {
+    userService.query()
+        .then(users => res.send(users))
+        .catch(err => {
+            loggerService.error('Cannot load users', err)
+            res.status(400).send('Cannot load users')
+        })
+})
+
+app.get('/api/user/:userId', (req, res) => {
+    const { userId } = req.params
+
+    userService.getById(userId)
+        .then(user => res.send(user))
+        .catch(err => {
+            loggerService.error('Cannot load user', err)
+            res.status(400).send('Cannot load user')
+        })
+})
 
 app.post('/api/auth/login', (req, res) => {
     const { username, password } = req.body
