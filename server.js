@@ -51,15 +51,18 @@ app.get("/api/bug/:bugId", (req, res) => {
 });
 
 app.put("/api/bug/:id", (req, res) => {
-  const { _id, title, description, severity, createdAt } = req.body;
-  const bug = { _id, title, description, severity, createdAt };
-  bugService.save(bug).then((bug) => res.send(bug));
+  const { _id, title, description, severity, createdAt, creator } = req.body;
+  const bug = { _id, title, description, severity, createdAt,creator };
+  const loggedInUser = authService.validateToken(req.cookies.loginToken)
+  bugService.save(bug,loggedInUser)
+  .then((bug) => res.send(bug))
+  .catch(res.status(404).send('Not your bug'))
 });
 app.post("/api/bug", (req, res) => {
   const { title, description, severity, createdAt } = req.body;
   const loggedInUser = authService.validateToken(req.cookies.loginToken)
 
-  if(!loggedInUser) return res.status(401).send('Cannot add car')
+  if(!loggedInUser) return res.status(401).send('Cannot add bug')
 
   const bug = { title, description, severity, createdAt};
   bugService.save(bug,loggedInUser).then((bug) => res.send(bug));
@@ -68,13 +71,9 @@ app.post("/api/bug", (req, res) => {
 app.delete("/api/bug/:bugId", (req, res) => {
   const bugId = req.params.bugId;
   const loggedInUser = authService.validateToken(req.cookies.loginToken)
-  bugService
-    .remove(bugId,loggedInUser)
+  bugService.remove(bugId,loggedInUser)
     .then(res.send("OK"))
-    .catch((err) => {
-      loggerService.error(err);
-      res.status(404).send(err);
-    });
+    .catch(res.status(404).send('Not your bug'));
 });
 
 app.get('/api/user', (req, res) => {

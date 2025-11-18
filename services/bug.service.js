@@ -66,7 +66,7 @@ function remove(bugId,loggedInUser) {
 
   if (idx === -1) return Promise.reject("Bug not found");
   if (!loggedInUser.isAdmin && bugs[idx].creator._id !== loggedInUser._id) {
-    return Promise.reject("Not your car");
+    return Promise.reject("Not your bug");
   }
   bugs.splice(idx, 1);
   return _saveBugs();
@@ -76,7 +76,7 @@ function save(bug, loggedInUser) {
   if (bug._id) {
     const bugToUpdate = bugs.find((currBug) => bug._id === currBug._id);
     if (!loggedInUser.isAdmin && bugToUpdate.creator._id !== loggedInUser._id) {
-      return Promise.reject("Not your car");
+      return Promise.reject("Not your bug");
     }
     const idx = bugs.findIndex((b) => b._id === bug._id);
     if (idx === -1) return Promise.reject("Bug not found");

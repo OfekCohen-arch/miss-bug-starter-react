@@ -15,21 +15,6 @@
     }
   },
   {
-    "title": "Keyboard Not Found",
-    "severity": "4",
-    "_id": "B102",
-    "description": "BBBBBBB",
-    "createdAt": 1567890456789,
-    "labels": [
-      "in progress",
-      "stuck"
-    ],
-    "creator": {
-      "_id": "tl3ps",
-      "fullname": "Popo McPopo"
-    }
-  },
-  {
     "_id": "B103",
     "title": "Bug 1762448081515",
     "description": "ff",
@@ -65,17 +50,6 @@
     "severity": 1,
     "createdAt": 1763452770417,
     "_id": "RbYdX",
-    "creator": {
-      "_id": "tl3ps",
-      "fullname": "Popo McPopo"
-    }
-  },
-  {
-    "title": "zwei",
-    "description": "222",
-    "severity": 2,
-    "createdAt": 1763452880727,
-    "_id": "Rx9lr",
     "creator": {
       "_id": "tl3ps",
       "fullname": "Popo McPopo"
