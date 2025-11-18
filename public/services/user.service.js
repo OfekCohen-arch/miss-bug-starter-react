@@ -20,6 +20,7 @@ function getEmptyCredentials() {
     return {
         username: '',
         password: '',
-        fullname: ''
+        fullname: '',
+        isAdmin: false
     }
 }

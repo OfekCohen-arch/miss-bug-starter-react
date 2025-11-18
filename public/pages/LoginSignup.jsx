@@ -77,12 +77,12 @@ export function LoginSignup({setLoggedinUser}){
             </form>
 
             <div className="btns">
-                <a href="#" onClick={() => setIsSignUp(!isSignup)}>
+                <button onClick={() => setIsSignUp(!isSignup)}>
                     {isSignup ?
                         'Already a member? Login' :
                         'New user? Signup here'
                     }
-                </a >
+                </button >
             </div>
         </div >
     )

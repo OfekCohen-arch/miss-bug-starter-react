@@ -5,7 +5,7 @@ import {
   writeJsonFile,
 } from "../services/util.service.js";
 
-const users = readJsonFile("data/user.json");
+const users = readJsonFile("data/user.json") || [];
 
 export const userService = {
   query,
