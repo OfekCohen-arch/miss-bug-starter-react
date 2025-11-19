@@ -1,0 +1,72 @@
+[
+    {
+        "_id": "u10000",
+        "username": "admin",
+        "fullname": "Admin Adminov",
+        "password": "admin",
+        "isAdmin": true
+    },
+    {
+        "_id": "u102",
+        "username": "nina",
+        "fullname": "Nina Simantov",
+        "password": "nina",
+        "isAdmin": false
+    },
+    {
+        "username": "popo",
+        "password": "popo",
+        "fullname": "Popo McPopo",
+        "_id": "tl3ps",
+        "isAdmin": false
+    },
+    {
+        "username": "kiki",
+        "password": "kiki",
+        "fullname": "Kiki Ki",
+        "_id": "6iykr",
+        "isAdmin": false
+    },
+    {
+        "username": "bob",
+        "password": "bob",
+        "fullname": "Bobby Bob",
+        "_id": "GOtHH",
+        "isAdmin": false
+    },
+    {
+        "_id": "u111",
+        "username": "puki",
+        "fullname": "Puki Ja",
+        "password": "puki",
+        "isAdmin": false
+    },
+    {
+        "username": "lala",
+        "password": "lala",
+        "fullname": "Lala Shuli",
+        "_id": "2XtHv",
+        "isAdmin": false
+    },
+    {
+        "username": "koko",
+        "fullname": "popo McPopo",
+        "password": "cuhujnj",
+        "_id": "dLyl8",
+        "isAdmin": false
+    },
+    {
+        "username": "kolo",
+        "fullname": "popo McPopo",
+        "password": "cuhujnj",
+        "_id": "BMRqI",
+        "isAdmin": false
+    },
+    {
+        "username": "bobo",
+        "fullname": "popo McPopo",
+        "password": "cuhujnj",
+        "isAdmin": false,
+        "_id": "ID1qT"
+    }
+]

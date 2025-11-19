@@ -5,8 +5,8 @@ export function UserList({ users, onRemoveUser }) {
     return <ul className="bug-list">
         {users.map(user => (
             <li key={user._id}>
-                <p>{user.fullname}</p>
                 <section className="actions">
+                    <h4>{user.fullname}</h4>
                     <button><Link to={`/user/${user._id}`}>Details</Link></button>
                     <button onClick={() => onRemoveUser(user._id)}>x</button>
                 </section>

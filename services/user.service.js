@@ -5,7 +5,7 @@ import {
   writeJsonFile,
 } from "../services/util.service.js";
 
-const users = readJsonFile("data/user.json") || [];
+var users = readJsonFile("data/user.json") || [];
 
 export const userService = {
   query,
@@ -18,8 +18,8 @@ export const userService = {
 function query() {
   const usersToReturn = users.map((user) => ({
     _id: user._id,
-    fullName: user.fullName,
-    userName: user.userName,
+    fullname: user.fullname,
+    username: user.username,
   }));
   return Promise.resolve(usersToReturn);
 }
@@ -43,6 +43,7 @@ function getByUsername(username) {
 }
 function remove(userId) {
   users = users.filter((currUser) => currUser._id !== userId);
+
   return _saveUsersToFile()
 }
 function add(user){
